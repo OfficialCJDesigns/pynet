@@ -1,0 +1,22 @@
+Installation and Usage Tutorial for Multi-Server Python Script Execution
+
+Requirements
+
+Python 3.x
+paramiko library (can be installed using pip install paramiko)
+Installation
+
+Clone the repository or download the following two python files:
+main_server.py: This script should be run on your main computer. It contains a list of servers that you want to connect to and the script you want to run on those servers.
+remote_server.py: This script should be run on each server that you want to connect to. It connects to the main server and waits for commands to execute.
+Replace the servers list in main_server.py with a list of dictionaries containing the hostname, username, and password for each server you want to connect to. Also, replace the path to the script you want to run on the servers with the correct path.
+On each server, replace the hostname, username, and password in remote_server.py with the correct values for your main server.
+Usage
+
+On your main computer, run the command python main_server.py to connect to each server in the list and run the specified script. The script will print the output and also the number of connected servers at the end.
+On each server, run the command python remote_server.py to connect to the main server and listen for commands. The script will print the number of connected servers at the time of connecting and exiting.
+On your main computer, you can now use the run_script function to run commands on multiple servers at once. You can also use the stdin, stdout, stderr = client.exec_command('read command') to read command from the main server and execute them on the connected servers.
+To stop the script on the servers, you can use the command exit on the main server. This will cause the script to exit on each connected server, and the counter variable will decrement.
+Note: The above example is just one way to do this, and there are many other libraries and tools that can be used to achieve similar results. Also, this is a basic example and you may want to add error handling and other features depending on your use case.
+
+Please ensure that the script is run on the machines with proper permissions and also the remote machines should be configured to accept the ssh connection from the main machine.
